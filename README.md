@@ -112,10 +112,13 @@ sf plugins
 <!-- commands -->
 
 -   [`sf hello world`](#sf-hello-world)
+-   [`sf ts convert`](#sf-ts-convert)
+-   [`sf ts generate component`](#sf-ts-generate-component)
+-   [`sf ts init`](#sf-ts-init)
 
 ## `sf hello world`
 
-Say hello either to the world or someone you know.
+Say hello.
 
 ```
 USAGE
@@ -128,7 +131,7 @@ GLOBAL FLAGS
   --json  Format output as json.
 
 DESCRIPTION
-  Say hello either to the world or someone you know.
+  Say hello.
 
   Say hello either to the world or someone you know.
 
@@ -140,6 +143,128 @@ EXAMPLES
   Say hello to someone you know:
 
     $ sf hello world --name Astro
+```
+
+## `sf ts convert`
+
+Convert existing LWC components to TypeScript.
+
+```
+USAGE
+  $ sf ts convert [--json] [-a] [-p <value>]
+
+FLAGS
+  -a, --convert-all-lwc  Boolean flag, will convert all LWC components in the project. Either this flag or the --path
+                         flag must be provided.
+  -p, --path=<value>     Path to folder with LWC components to be converted. This will convert all .js files in the path
+                         folders and subfolders. Can also be used if your components are not in the default LWC folder.
+                         Either this flag or the --convert-all-lwc flag must be provided.
+
+GLOBAL FLAGS
+  --json  Format output as json.
+
+DESCRIPTION
+  Convert existing LWC components to TypeScript.
+
+  Convert all JS files in your default LWC folder to TS. Or specific a path and only convert JS files in that path to
+  TS. This will not change or remove any existing JS or TS files.
+
+EXAMPLES
+  Convert all LWC components in your project
+
+    $ sf ts convert --convert-all-lwc
+    $ sf ts convert -a
+
+  Convert a specific component
+
+    $ sf ts convert --path force-app/main/default/lwc/myComponent
+    $ sf ts convert -p force-app/main/default/lwc/myComponent
+```
+
+## `sf ts generate component`
+
+Generate a new LWC component and corresponding .ts files.
+
+```
+USAGE
+  $ sf ts generate component -n <value> [--json] [-d <value>] [-t default|analyticsDashboard|analyticsDashboardWithStep]
+    [--api-version <value>]
+
+FLAGS
+  -d, --output-dir=<value>  Directory for saving the created files.
+  -n, --name=<value>        (required) Name of the generated Lightning Component.
+  -t, --template=<option>   Template to use for file creation.
+                            <options: default|analyticsDashboard|analyticsDashboardWithStep>
+  --api-version=<value>     Override the api version used for api requests made by this command
+
+GLOBAL FLAGS
+  --json  Format output as json.
+
+DESCRIPTION
+  Generate a new LWC component and corresponding .ts files.
+
+  Uses `sf lightning generate component` to create a new components and creates corresponding .ts file. Passes `--type
+  lwc` flag.
+
+EXAMPLES
+  Generate the metadata files for an LWC component bundle in the default directory
+
+    $ sf ts generate component --name mycomponent
+
+FLAG DESCRIPTIONS
+  -d, --output-dir=<value>  Directory for saving the created files.
+
+    The location can be an absolute path or relative to the current working directory. The default is the default LWC
+    directory.
+
+  -n, --name=<value>  Name of the generated Lightning Component.
+
+    The name can be up to 40 characters and must start with a letter.
+
+  -t, --template=default|analyticsDashboard|analyticsDashboardWithStep  Template to use for file creation.
+
+    Supplied parameter values or default values are filled into a copy of the template.
+```
+
+## `sf ts init`
+
+Initialize your project for use with TypeScript
+
+```
+USAGE
+  $ sf ts init [--json] [-t <value>] [-l <value>] [-a]
+
+FLAGS
+  -a, --convert-all-lwc     If true, then all LWC components will be converted to .ts
+  -l, --lwc-target=<value>  [default: ./force-app/main/default/lwc] Target path of all LWC components.
+  -t, --target=<value>      [default: ./] Target folder of your project.
+
+GLOBAL FLAGS
+  --json  Format output as json.
+
+DESCRIPTION
+  Initialize your project for use with TypeScript
+
+  Installs the dependencies needed to start using TypeScript in your project. Including updating your .forceIgnore,
+  creating a tsconfig file and adding some types needed for transpiling your .ts files.
+
+EXAMPLES
+  $ sf ts init
+
+FLAG DESCRIPTIONS
+  -a, --convert-all-lwc  If true, then all LWC components will be converted to .ts
+
+    All components in the default LWC folder will be converted to .ts. If `--lwc-target` is also provided, then only .js
+    files in that folder will be converted. Conversion process does not alter your current .js files.
+
+  -l, --lwc-target=<value>  Target path of all LWC components.
+
+    Path to your LWC components. A folder for TS types will be created here.
+
+  -t, --target=<value>  Target folder of your project.
+
+    The path to the root of your project. It should be the folder where the `package.json` and `.forceignore` are
+    located. Not needed if run from the root of your project.
 ```
 
 <!-- commandsstop -->
