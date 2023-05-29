@@ -166,7 +166,7 @@ GLOBAL FLAGS
 DESCRIPTION
   Convert existing LWC components to TypeScript.
 
-  Convert all JS files in your default LWC folder to TS. Or specific a path and only convert JS files in that path to
+  Convert all JS files in your default LWC folder to TS. Or specify a path and only convert JS files in that path to
   TS. This will not change or remove any existing JS or TS files.
 
 EXAMPLES
