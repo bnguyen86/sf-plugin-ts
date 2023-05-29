@@ -3,7 +3,7 @@ import { readdir, readFile, writeFile, access } from 'node:fs/promises';
 const COMPONENT_NAME_REGEX = /lwc\/.+?\//g;
 const TSCONFIG_FILENAME = 'tsconfig.json';
 
-type ConversionResult = {
+export type ConversionResult = {
     status: 'SKIPPED' | 'CONVERTED';
     filePath: string;
 };
