@@ -12,6 +12,11 @@ declare module 'lwc' {
      * Decorator to mark private reactive properties
      */
     export const track: CustomPropertyDecorator;
+
+    /**
+     * Function required for Jest tests
+     */
+    export const createElement: function;
 }
 
 type CustomPropertyDecorator = any;`;
