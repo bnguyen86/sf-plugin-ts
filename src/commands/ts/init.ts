@@ -6,6 +6,7 @@ import { createTsConfig } from '../../modules/createTsConfig';
 import { createTypes } from '../../modules/createTypes';
 import { installPackages } from '../../modules/addNpmPackages';
 import { convertLwcDirectory } from '../../modules/convertJsTs';
+import { addScripts } from '../../modules/addNpmScripts';
 
 Messages.importMessagesDirectory(__dirname);
 const messages = Messages.loadMessages('lwc-ts', 'ts.init');
@@ -66,6 +67,10 @@ export default class TsInit extends SfCommand<TsInitResult> {
 
         this.spinner.start(messages.getMessage('steps.createTsTypes'));
         await createTypes(lwcTarget);
+        this.spinner.stop();
+
+        this.spinner.start(messages.getMessage('steps.addingScripts'));
+        await addScripts(target);
         this.spinner.stop();
 
         if (convertExistingLwc) {

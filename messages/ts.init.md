@@ -54,6 +54,10 @@ Creating TS types
 
 Converting all existing LWC components to .ts
 
+# steps.addingScripts
+
+Adding scripts to package.json
+
 # error.forceIgnoreNotFound
 
 .forceIgnore not found, please run this command from your project root directory, or create a .forceIgnore file in your target directory.

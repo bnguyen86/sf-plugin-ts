@@ -3,13 +3,15 @@ import { Messages } from '@salesforce/core';
 
 import { convertLwcDirectory } from '../../modules/convertJsTs';
 
+import type { ConversionResult } from '../../modules/convertJsTs';
+
 Messages.importMessagesDirectory(__dirname);
 const messages = Messages.loadMessages('lwc-ts', 'ts.convert');
 
 const DEFAULT_LWC_PATH = './force-app/main/default/lwc';
 
 export type TsConvertResult = {
-    results?: string[];
+    results?: ConversionResult[];
 };
 
 export default class TsConvert extends SfCommand<TsConvertResult> {
