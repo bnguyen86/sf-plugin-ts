@@ -20,7 +20,7 @@ export async function convertLwcDirectory(targetPath: string): Promise<Conversio
     }
 
     const results = await Promise.all(filesToConvert);
-    await addComponentsToConfigPath(targetPath, files);
+    await addComponentsToConfigPath(files);
 
     return results;
 }
@@ -71,7 +71,7 @@ async function doesTsExist(jsPath: string): Promise<boolean> {
     return true;
 }
 
-async function addComponentsToConfigPath(targetPath: string, fullPaths: string[]): Promise<void> {
+async function addComponentsToConfigPath(fullPaths: string[]): Promise<void> {
     const tsPaths = createTsPaths(fullPaths);
     const tsconfigContents = await readFile(`./${TSCONFIG_FILENAME}`, { encoding: 'utf8' });
     const tsconfig = JSON.parse(tsconfigContents) as Record<string, unknown>;
